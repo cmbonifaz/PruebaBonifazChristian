@@ -23,7 +23,7 @@ public class TestEstudiante {
         System.out.println("El % de mujeres X encima del promedio : " + porcentajePromedio(estudiantes, nroHombres, 'f'));
         ne = notaAlta(estudiantes);
         System.out.println("El estudiante con la nota mas alta es: " + estudiantes[ne].getNombre());
-        
+
     }
 
     public static void llenaEstudiante(Estudiante est[]) {
@@ -104,17 +104,17 @@ public class TestEstudiante {
         String nombre;
         char sexo;
         double nota;
-
-        for (int n = 0; n < est.length - 1; n++) {
-            for (int j = 0; j < est.length - 1; j++) {
-                if (est[j].getNota() < est[j + 1].getNota()) {
-                    nombre = est[j + 1].getNombre();
-                    sexo = est[j + 1].getSexo();
-                    nota = est[j + 1].getNota();
-                    est[j + 1] = est[j];
-                    est[j] = new Estudiante(nombre, sexo, nota);
-                }
+        int j;
+        for (int p = 1; p < est.length; p++) {
+            nombre = est[p].getNombre();
+            sexo = est[p].getSexo();
+            nota = est[p].getNota();
+            j = p - 1;
+            while ((j >= 0) && (nota > est[j].getNota())) {
+                est[j + 1] = est[j];
+                j--;
             }
+            est[j + 1] = new Estudiante(nombre, sexo, nota);
         }
     }
 }
